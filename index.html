@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscrições de Vôlei - Clube de Esportes</title>
-
+    <title>Vôlei Brasil - Inscrições</title>
     <style>
-        /* Reset básico para limpar margens do navegador */
         * {
             margin: 0;
             padding: 0;
@@ -15,38 +13,38 @@
         }
 
         body {
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #f0f4f8;
+            color: #1a202c;
         }
 
         header {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
             text-align: center;
-            padding: 40px 20px;
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 50px 20px;
         }
 
         header h1 {
-            color: #1e3799;
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
 
-        /* --- Flexbox e Layout --- */
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* Estilo do Card Individual */
         .card {
             background-color: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             overflow: hidden;
-            width: 300px;
+            width: 320px;
             transition: transform 0.2s;
         }
 
@@ -54,10 +52,9 @@
             transform: translateY(-5px);
         }
 
-        /* Imagens e Conteúdo */
         .card img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
         }
 
@@ -66,101 +63,220 @@
         }
 
         .card-content h3 {
-            margin-bottom: 10px;
-            color: #1e3799;
+            color: #0d47a1;
+            margin-bottom: 8px;
         }
 
         .card-content p {
             font-size: 14px;
-            color: #666;
+            color: #4a5568;
             margin-bottom: 20px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        /* Estilo do Botão de Inscrição */
-        .like-btn {
-            background-color: #0c2461;
+        .signup-btn {
+            background-color: #ff9800;
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 20px;
+            padding: 12px 20px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.2s;
             width: 100%;
+            transition: background 0.2s;
         }
 
-        .like-btn:hover {
-            background-color: #1e3799;
+        .signup-btn:hover {
+            background-color: #e68a00;
         }
 
-        /* Classe dinâmica para estado "Inscrito" */
-        .like-btn.liked {
-            background-color: #44bd32;
+        /* Estilos do Modal (Pop-up de Inscrição) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-card h2 {
+            margin-bottom: 15px;
+            color: #0d47a1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #a0aec0;
+        }
+
+        .confirmation-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #2e7d32;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🏐 Inscrições para Vôlei 2026</h1>
-        <p>Escolha a sua modalidade e garanta a sua vaga na quadra!</p>
+        <h1>🏐 Academia de Vôlei</h1>
+        <p>Escolha a sua categoria e faça sua inscrição para o próximo campeonato!</p>
     </header>
 
     <main class="gallery-container">
 
         <div class="card">
-            <img src="https://depositphotos.com/br/photos/rede-v%C3%B4lei.html" alt="Quadra de Vôlei de Praia">
+            <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=600&q=80" alt="Vôlei de Quadra">
             <div class="card-content">
-                <h3>Vôlei de Praia (Duplas)</h3>
-                <p>Treinos aos sábados de manhã. Ideal para quem quer melhorar o condicionamento e a movimentação na areia.</p>
-                <button class="like-btn">🏐 Garanta sua vaga (<span class="like-count">12</span> inscritos)</button>
+                <h3>Vôlei de Quadra</h3>
+                <p>Treinos táticos e posicionamento para atletas de quadra. Venha evoluir seu saque e ataque.</p>
+                <button class="signup-btn"> Inscrever-se</button>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://brasilescola.uol.com.br/educacao-fisica/voleibol.htm" alt="Ginásio de Vôlei">
+            <img src="https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=600&q=80" alt="Vôlei de Praia">
             <div class="card-content">
-                <h3>Torneio Amador de Quadra</h3>
-                <p>Campeonato misto no próximo mês. Monte sua equipe ou inscreva-se individualmente para formar um time.</p>
-                <button class="like-btn">🏐 Garanta sua vaga (<span class="like-count">24</span> inscritos)</button>
+                <h3>Vôlei de Praia</h3>
+                <p>Desenvolva resistência e agilidade na areia. Aulas para duplas e quartetos em todos os níveis.</p>
+                <button class="signup-btn"> Inscrever-se</button>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://depositphotos.com/br/photo/beautiful-girls-indoor-playing-volleyball-69271201.html" alt="Treino de Vôlei">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80" alt="Treino de Levantamento">
             <div class="card-content">
                 <h3>Treino de Fundamentos</h3>
-                <p>Foco em saque, manchete e levantamento. Para iniciantes e intermediários que querem aperfeçoar a técnica.</p>
-                <button class="like-btn">🏐 Garanta sua vaga (<span class="like-count">8</span> inscritos)</button>
+                <p>Foco em passe, levantamento e defesa para quem deseja aprimorar a técnica do jogo.</p>
+                <button class="signup-btn"> Inscrever-se</button>
             </div>
         </div>
 
     </main>
 
-    <script>
-        // Seleciona todos os botões de inscrição
-        const botoesInscricao = document.querySelectorAll('.like-btn');
+    <!-- Modal Form (Janela de Inscrição) -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-card">
+            <button class="close-btn" id="closeModal">&times;</button>
+            
+            <form id="playerForm">
+                <h2>Ficha do Atleta</h2>
+                
+                <div class="form-group">
+                    <label for="name">Nome Completo:</label>
+                    <input type="text" id="name" required placeholder="Digite seu nome">
+                </div>
 
-        botoesInscricao.forEach(function(botao) {
-            botao.addEventListener('click', function() {
-                const spanContador = botao.querySelector('.like-count');
-                let inscritosAtuais = parseInt(spanContador.textContent);
-                
-                if (botao.classList.contains('liked')) {
-                    // Cancela a inscrição
-                    botao.classList.remove('liked');
-                    inscritosAtuais--;
-                    botao.childNodes[0].textContent = "🏐 Garanta sua vaga (";
-                } else {
-                    // Confirma a inscrição
-                    botao.classList.add('liked');
-                    inscritosAtuais++;
-                    botao.childNodes[0].textContent = "✅ Inscrito (";
-                }
-                
-                spanContador.textContent = inscritosAtuais;
+                <div class="form-group">
+                    <label for="age">Idade:</label>
+                    <input type="number" id="age" required placeholder="Ex: 16" min="5" max="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="height">Altura (m ou cm):</label>
+                    <input type="text" id="height" required placeholder="Ex: 1,75 m ou 175 cm">
+                </div>
+
+                <button type="submit" class="submit-btn">Confirmar Inscrição</button>
+            </form>
+
+            <div class="confirmation-message" id="confirmMsg">
+                <h3>🎉 Inscrição Realizada!</h3>
+                <p id="msgText"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+        const playerForm = document.getElementById('playerForm');
+        const confirmMsg = document.getElementById('confirmMsg');
+        const msgText = document.getElementById('msgText');
+        const signupBtns = document.querySelectorAll('.signup-btn');
+
+        // Abre a janela ao clicar em qualquer botão de inscrição
+        signupBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                playerForm.style.display = 'block';
+                confirmMsg.style.display = 'none';
+                playerForm.reset();
             });
+        });
+
+        // Fecha o formulário
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Evento de envio dos dados
+        playerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const height = document.getElementById('height').value;
+
+            playerForm.style.display = 'none';
+            msgText.innerHTML = `<strong>${name}</strong> (${age} anos, ${height}) cadastrado(a) com sucesso!`;
+            confirmMsg.style.display = 'block';
         });
     </script>
 </body>
